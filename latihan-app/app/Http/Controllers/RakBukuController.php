@@ -50,19 +50,44 @@ class RakBukuController extends Controller
         // $rak->save(); 
         // $request->session()->flash('pesan', 'Data telah berhasil tersimpan.'); 
         // return redirect('/rak_buku');
-        $validate = $request->validate([
-            'nama' => 'required | max:50',
-            'lokasi' => 'required | max:50'
-        ]);
+
+        // $validate = $request->validate([
+        //     'nama' => 'required | max:50',
+        //     'lokasi' => 'required | max:50'
+        // ]);
+        // if ($validate){
+        //     $request->session()->put('rak', $rak); 
+        //     $request->session()->flash('pesan', 'Data telah berhasil tersimpan.'); 
+        //     $rakBuku->save();
+        // }
+        $rm = $this->rules_messages();
+        $validator = Validator::make($request->all(),$rm['rules'], $messages=$rm['messages']);
+
+        if ($validator->fails()){
+            return redirect('/rak_buku/create')->withErrors($validator)->withInput();
+        }
+        $validate=$validator->validate();
         if ($validate){
-            $request->session()->put('rak', $rak); 
-            $request->session()->flash('pesan', 'Data telah berhasil tersimpan.'); 
-            $rakBuku->save();
+            $rak->save();
         }
         return redirect('/rak_buku');
     }
 
-
+    public function rules_messages(){
+        $rules=[
+            'nama' => 'required | max:50',
+            'lokasi' => 'required | max:50'
+        ];
+        $messages = [
+            'required' => 'kolom ini harus diisi.',
+            'max' => 'karakter melebihi batas ketentuan.'
+        ];
+        $data = [
+            'rules' => $rules,
+            'messages' => $messages,
+        ];
+        return $data;
+    }
 
     /**
      * Display the specified resource.
@@ -94,12 +119,24 @@ class RakBukuController extends Controller
         // $rakBuku->save(); 
         // $request->session()->flash('pesan', 'Data telah berhasil diubah.'); 
         // return redirect('/rak_buku');
-        $validate = $request->validate([
-            'nama' => 'required | max:50',
-            'lokasi' => 'required | max:50'
-        ]);
+
+        // $validate = $request->validate([
+        //     'nama' => 'required | max:50',
+        //     'lokasi' => 'required | max:50'
+        // ]);
+        // if ($validate){
+        //     $request->session()->flash('pesan', 'Data telah berhasil tersimpan.'); 
+        //     $rakBuku->save();
+        // }
+
+        $rm = $this->rules_messages();
+        $validator = Validator::make($request->all(),$rm['rules'], $messages=$rm['messages']);
+
+        if ($validator->fails()){
+            return redirect('/rak_buku/create')->withErrors($validator)->withInput();
+        }
+        $validate=$validator->validate();
         if ($validate){
-            $request->session()->flash('pesan', 'Data telah berhasil tersimpan.'); 
             $rakBuku->save();
         }
         return redirect('/rak_buku');
