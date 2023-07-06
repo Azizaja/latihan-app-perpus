@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Daftar Rak Buku')
 @section('content')
+<script>
+        $(function () {
+            $("#datepicker").datepicker();   
+        });
+    </script>
     <h2>{{ $store }} Data Rak Buku</h2>
     <form method="POST" action="{{$action}}">
         @csrf
@@ -17,9 +22,11 @@
             <b>{{ $message }}</b>
         @enderror<br>
         <input type="text" class="mail_text" name="keterangan" placeholder="keterangan" value="{{ $rak->keterangan }}" /><br>
-        <input type="submit" value="{{ $store }}" />
+        <input type="text"  class="mail_text" id="datepicker" name="tanggal" placeholder="tanggal" title="Masukkan tanggal"/></br>
+        <input type="submit" class="btn btn-success mt-3" value="{{ $store }}" />
         <div class="send_bt">
             <a href="{{ url('/rak_buku') }}">Kembali</a>
         </div>
     </form>
+   
 @endsection

@@ -30,6 +30,10 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- owl stylesheets -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css" rel="stylesheet" />
+    <!-- jquery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jqueryui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -386,6 +390,8 @@
     </div>
     <!-- copyright section end  -->
     <!-- Javascript files-->
+   
+
     <script src="/web-template/js/jquery.min.js"></script>
     <script src="/web-template/js/popper.min.js"></script>
     <script src="/web-template/js/bootstrap.bundle.min.js"></script>
