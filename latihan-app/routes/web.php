@@ -53,3 +53,6 @@ Route::get('/buku', function () {
 });
 // Rak Buku
 Route::resource('rak_buku', RakBukuController::class);
+// Ajax Rak Buku
+Route::post('/rak_buku/ajax_store',[RakBukuController::class,'store_ajax']);
+

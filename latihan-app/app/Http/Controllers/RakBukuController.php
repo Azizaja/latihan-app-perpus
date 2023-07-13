@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RakBuku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class RakBukuController extends Controller
 {
@@ -33,7 +34,7 @@ class RakBukuController extends Controller
     {
         $data['store'] = 'Input';
         $data['rak'] = new RakBuku();
-        $data['action'] = url('rak_buku');
+        $data['action'] = url('rak_buku/ajax_store');
         return view('rak_buku.form', $data);
     }
 
@@ -72,6 +73,17 @@ class RakBukuController extends Controller
         }
         return redirect('/rak_buku');
     }
+
+    public function store_ajax(Request $request)
+{
+$rak = new RakBuku();
+$rak->nama = $request->input('nama');
+$rak->lokasi = $request->input('lokasi');
+$rak->keterangan = $request->input('keterangan');
+$rak->save();
+$json = Response::json($rak);
+return $json;
+}
 
     public function rules_messages(){
         $rules=[

@@ -3,13 +3,13 @@
 
 @section('content')
     <h2>Daftar Rak Buku</h2>
-    <div class="send_bt">
+    <div class="send_bt mb-3">
         <a href="{{ url('rak_buku/create') }}">Tambah</a>
     </div>
     <table class="table table-hover">
         <tr>
             <th>No.</th>
-            <th>ID</th>
+            <!-- <th>ID</th> -->
             <th>Nama Rak</th>
             <th>Lokasi</th>
             <th>Keterangan</th>
@@ -21,13 +21,13 @@
         @foreach ($rak as $r)
             <tr>
                 <td>{{ $i }}</td>
-                <td>{{ $r->id }}</td>
+                <!-- <td>{{ $r->id }}</td> -->
                 <td>{{ $r->nama }}</td>
                 <td>{{ $r->lokasi }}</td>
                 <td>{{ $r->keterangan }}</td>
                 <td>
                     <a class="btn btn-warning" href="rak_buku/{{ $r->id }}/edit">Edit</a>
-                    <a class="btn btn-warning" href="rak_buku/{{ $r->id }}">Hapus</a>
+                    <a class="btn btn-danger" href="rak_buku/{{ $r->id }}">Hapus</a>
                 </td>
             </tr>
             @php
